@@ -23,7 +23,7 @@ provider "google" {
 variable "project_id" {
   description = "GCP project ID"
   type        = string
-  default     = "weather-devops-barath01"
+  default     = "lokesh-devops-proj"
 }
 
 variable "gcp_region" {
