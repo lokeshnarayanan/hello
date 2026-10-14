@@ -1,0 +1,38 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-world-deployment
+  labels:
+    app: hello-world
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: hello-world
+  template:
+    metadata:
+      labels:
+        app: hello-world
+    spec:
+      containers:
+        - name: hello-world
+          image: lokesh251124/hello:2026-10-13-212427
+          ports:
+            - containerPort: 5005
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-world-service
+  labels:
+    app: hello-world
+spec:
+  type: LoadBalancer
+  selector:
+    app: hello-world
+  ports:
+    - name: web
+      protocol: TCP
+      port: 80
+      targetPort: 5005

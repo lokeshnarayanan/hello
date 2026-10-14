@@ -1,12 +1,22 @@
+
 from flask import Flask
+from prometheus_flask_exporter import PrometheusMetrics
 
 app = Flask(__name__)
 
+# Enable Prometheus metrics at the /metrics endpoint
+metrics = PrometheusMetrics(app)
+
+
 @app.route("/")
 def hello():
-    return "Hello lokesh25112 this is final hello project!"                   
+    return "Hello World!"
+
+
 @app.route("/new")
 def new():
-    return "FINAL CHECK"            
+    return "FINAL CHECK"
+
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5005)
