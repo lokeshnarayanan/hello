@@ -50,7 +50,21 @@ pipeline {
                 bat 'docker build -t "%FULL_IMAGE%" .'
             }
         }
+        stage('Update Kubernetes Deployment File') {
+            steps {
+                bat """
+                sed -i 's|image: .*|image: ${FULL_IMAGE}|' ${DEPLOYMENT_FILE}
 
+                git config user.name "Jenkins"
+                git config user.email "jenkins@example.com"
+
+                git add ${DEPLOYMENT_FILE}
+                git commit -m "Updated image to ${FULL_IMAGE}" || echo "No changes to commit"
+
+                git push
+                """
+            }
+        }
         stage('Docker Push') {
             steps {
                 

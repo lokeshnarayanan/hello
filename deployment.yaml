@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: hello-world
-          image: lokesh251124/hello:2026-10-13-212427
+          image: lokesh251124/hello:2026-10-14-111524
           ports:
             - containerPort: 5005
 ---
